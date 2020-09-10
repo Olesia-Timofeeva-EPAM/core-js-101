@@ -1,11 +1,13 @@
-/* eslint-disable linebreak-style */
+/* eslint-disable linebreak-style  */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable comma-dangle */
+/* eslint-disable function-paren-newline */
 /* ************************************************************************************************
  *                                                                                                *
  * Plese read the following tutorial before implementing tasks:                                   *
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise       *
  *                                                                                                *
  ************************************************************************************************ */
-
 
 /**
  * Return Promise object that is resolved with string value === 'Hooray!!! She said "Yes"!',
@@ -41,7 +43,6 @@ function willYouMarryMe(isPositiveAnswer) {
   });
   return promise;
 }
-
 
 /**
  * Return Promise object that should be resolved with array containing plain values.
@@ -102,20 +103,21 @@ function getFastestPromise(array) {
  *    });
  *
  */
-function chainPromises(array, action)  {
+function chainPromises(array, action) {
   return new Promise((resolve) => {
     const resArr = [];
     const errArr = [];
-    array.forEach((promise) => promise
-      .then((nextRes) => {
-        resArr.push(nextRes);
-      })
-      .catch((err) => {
-        errArr.push(err);
-      }));
+    array.forEach((promise) =>
+      promise
+        .then((nextRes) => {
+          resArr.push(nextRes);
+        })
+        .catch((err) => {
+          errArr.push(err);
+        })
+    );
     resolve(resArr);
-  })
-    .then((resArr) => resArr.reduce(action));
+  }).then((resArr) => resArr.reduce(action));
 }
 
 module.exports = {
