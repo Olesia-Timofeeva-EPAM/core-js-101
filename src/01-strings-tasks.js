@@ -207,7 +207,7 @@ function extractEmails(str) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
+function getRectangleString(width, height) {
   const top = `┌${'─'.repeat(width - 2)}┐\n`;
   const midFragment = `│${' '.repeat(width - 2)}│\n`;
   const midRes = midFragment.repeat(height - 2);
@@ -295,7 +295,7 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
+function getCardId(value) {
   const deck = [
     'A♣',
     '2♣',
