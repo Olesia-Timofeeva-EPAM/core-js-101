@@ -176,8 +176,14 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    if (str.indexOf(char) === str.lastIndexOf(char)) {
+      return char;
+    }
+  }
+  return null;
 }
 
 /**
@@ -202,8 +208,10 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const openingBr = isStartIncluded ? '[' : '(';
+  const closingBr = isEndIncluded ? ']' : ')';
+  return `${openingBr}${Math.min(a, b)}, ${Math.max(a, b)}${closingBr}`;
 }
 
 /**
@@ -218,8 +226,8 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  return str.split('').reverse().join('');
 }
 
 /**
@@ -234,8 +242,11 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const str = String(num);
+  const revStr = str.split('').reverse().join('');
+  const numRev = Number(revStr);
+  return numRev;
 }
 
 /**
@@ -276,8 +287,15 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let res = num;
+
+  do {
+    const numArr = String(res).split('');
+    res = numArr.reduce((prev, item) => prev + item * 1, 0);
+  } while (res > 9);
+
+  return res;
 }
 
 /**
@@ -301,8 +319,26 @@ function getDigitalRoot(/* num */) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const buffer = [];
+
+  const bracketsPairs = {
+    '{': '}',
+    '(': ')',
+    '[': ']',
+    '<': '>',
+  };
+
+  for (let i = 0; i < str.length; i += 1) {
+    const char = str[i];
+    if (bracketsPairs[char]) {
+      buffer.push(char);
+    } else {
+      const prev = buffer.pop();
+      if (char !== bracketsPairs[prev]) return false;
+    }
+  }
+  return buffer.length === 0;
 }
 
 /**
